@@ -83,7 +83,10 @@ public class WebBrowser extends ReportManager {
 			driver = new FirefoxDriver();
 			System.out.println("[INFO] Firefox has started");
 		} else if (browser.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", driverExecutablePath + "chromedriver.exe");
+			String extension = "";
+			if (System.getProperty("os.name").toLowerCase().contains("windows")) extension = ".exe";
+			if (System.getProperty("os.name").toLowerCase().contains("mac"))     extension = "_mac";
+			System.setProperty("webdriver.chrome.driver", driverExecutablePath + "chromedriver" + extension);
 			// String downloadFilePath = "D:\\workspace\\";
 			// HashMap<String, Object> chromePrefs = new HashMap<String,
 			// Object>();
