@@ -14,7 +14,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class MainClass extends WebBrowser {
 
-	private static final int WAITTIMEOUT = 30;
+	private static final int WAITTIMEOUT = 3;
 
 	private static WebElement getEl(By by) {
 		System.out.println("[INFO] Trying to get element Selector: '" + by.toString() + "'");
@@ -88,7 +88,7 @@ public class MainClass extends WebBrowser {
 		WebDriverWait wait = new WebDriverWait(Driver(), WAITTIMEOUT);
 		try {
 			element = wait.until(ExpectedConditions.elementToBeClickable(getEl(by)));
-			for (int i = 0; i < WAITTIMEOUT - 15; i++) {
+			for (int i = 1; i <= WAITTIMEOUT; i++) {
 				try {
 					element.click();
 					logStatusPass("Clicked on '" + elementName + "'");
@@ -97,10 +97,7 @@ public class MainClass extends WebBrowser {
 				} catch (Exception e1) {
 					System.out.println("[INFO] Waiting until element to be clickable...");
 					Thread.sleep(1000);
-					if (i == WAITTIMEOUT - 16) {
-						b = true;
-					}
-					if (b) {
+					if (i == WAITTIMEOUT) {
 						logInfo("Trying to click on '" + elementName + "' ...");
 						System.out.println(
 								"[INFO] Trying to click on '" + elementName + "' Selector: '" + by.toString() + "'");
